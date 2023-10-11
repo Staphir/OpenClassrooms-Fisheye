@@ -23,23 +23,34 @@ async function displayPhotographerHeader(photographer) {
   photographHeader.appendChild(photographImgDOM);
 }
 
-async function displayPhotographerMedias(medias) {
-  // Attention mediatemplate boucle sur medias mais ne faire qu'une fois getSortDivDOM()
+async function displayPhotographerMedias(medias, photographerName) {
   const gallerySection = document.querySelector('.gallery');
   medias.forEach((media) => {
-    const mediaModel = mediaTemplate(media);
+    const mediaModel = mediaTemplate(media, photographerName);
     const mediaGallery = mediaModel.getUserGalleryDOM();
     gallerySection.appendChild(mediaGallery);
   });
-  // const sortDivDOM = mediaModel.getSortDivDOM();
-  // gallerySection.appendChild(sortDivDOM);
+}
+
+async function displayInsetLikesAndPrice(photographer) {
+  // calcul nb de likes
+  const divLikes = document.querySelector('.likes');
+  const p = document.createElement('p');
+  p.textContent = 'nblikes';
+  const heartIcon = document.createElement('i');
+  heartIcon.classList = 'fa-solid fa-xs fa-heart';
+  divLikes.appendChild(p);
+  divLikes.appendChild(heartIcon);
+  const divAmount = document.querySelector('.amount');
+  divAmount.textContent = `${photographer.price}€ / jour`;
 }
 
 async function init() {
 // Récupère les datas des photographes
   const { photographer, medias } = await getPhotographersDatas();
   displayPhotographerHeader(photographer);
-  displayPhotographerMedias(medias);
+  displayPhotographerMedias(medias, photographer.name);
+  displayInsetLikesAndPrice(photographer);
 }
 
 init();

@@ -72,36 +72,11 @@ function photographerTemplate(data) {
   };
 }
 
-function mediaTemplate(data) {
+function mediaTemplate(data, photographerName) {
   const {
     id, photographerId, title, image, video, likes, date, price,
   } = data;
-
-  function getSortDivDOM() {
-    const div = document.createElement('div');
-    div.className = 'div-sort';
-    const label = document.createElement('label');
-    label.htmlFor = 'sort';
-    label.textContent = 'Trier par';
-    const select = document.createElement('select');
-    select.id = 'sort';
-    select.name = 'sort';
-    const popularityOption = document.createElement('option');
-    popularityOption.value = 'popularity';
-    popularityOption.textContent = 'Popularité';
-    const dateOption = document.createElement('option');
-    dateOption.value = 'date';
-    dateOption.textContent = 'Date';
-    const titleOption = document.createElement('option');
-    titleOption.value = 'title';
-    titleOption.textContent = 'Titre';
-    select.appendChild(popularityOption);
-    select.appendChild(dateOption);
-    select.appendChild(titleOption);
-    div.appendChild(label);
-    div.appendChild(select);
-    return div;
-  }
+  const firstname = photographerName.split(' ')[0];
 
   function getUserGalleryDOM() {
     const divAllBlock = document.createElement('div');
@@ -110,12 +85,12 @@ function mediaTemplate(data) {
       // const figure = document.createElement('figure');
       const img = document.createElement('img');
       // changer Mimi en name
-      img.src = `assets/Sample Photos/Mimi/${image}`;
+      img.src = `assets/Sample Photos/${firstname}/${image}`;
       divAllBlock.appendChild(img);
     } else {
       const videoElement = document.createElement('video');
       // changer Mimi en name
-      videoElement.src = `assets/Sample Photos/Ellie Rose/${video}`;
+      videoElement.src = `assets/Sample Photos/${firstname}/${video}`;
       videoElement.controls = true;
       divAllBlock.appendChild(videoElement);
     }
@@ -125,7 +100,7 @@ function mediaTemplate(data) {
     p.textContent = title;
     const divLikes = document.createElement('div');
     // nombre de like chiffre dynamique
-    divLikes.textContent = 'xx';
+    divLikes.textContent = price;
     const i = document.createElement('i');
     i.classList.add('fa-solid');
     i.classList.add('fa-heart');
@@ -145,7 +120,6 @@ function mediaTemplate(data) {
     likes,
     date,
     price,
-    getSortDivDOM,
     getUserGalleryDOM,
   };
 }

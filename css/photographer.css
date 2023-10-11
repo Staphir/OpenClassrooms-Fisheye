@@ -209,3 +209,34 @@ form input {
     color: #901C1C;
     font-size: 24px;
 }
+
+.divTextMedia .fa-heart {
+    margin-left: 5px;
+}
+
+.inset-likes-amount {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #DB8876;
+    position: fixed;
+    right: 50px;
+    bottom: 0;
+    width: 376px;
+    height: 65px;
+    font-size: 24px;
+    font-weight: bold;
+    padding: 0 20px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+.likes {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.likes p {
+    margin-right: 5px;
+}
