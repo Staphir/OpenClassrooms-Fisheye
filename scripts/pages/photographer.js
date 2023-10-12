@@ -16,6 +16,7 @@ async function getPhotographersDatas() {
 
 async function displayPhotographerHeader(photographer) {
   const photographHeader = document.querySelector('.photograph-header');
+  // eslint-disable-next-line no-undef
   const photographerModel = photographerTemplate(photographer);
   const photographInformationsDOM = photographerModel.getUserInformationsDOM();
   const photographImgDOM = photographerModel.getUserImgDOM();
@@ -26,17 +27,26 @@ async function displayPhotographerHeader(photographer) {
 async function displayPhotographerMedias(medias, photographerName) {
   const gallerySection = document.querySelector('.gallery');
   medias.forEach((media) => {
+    // eslint-disable-next-line no-undef
     const mediaModel = mediaTemplate(media, photographerName);
     const mediaGallery = mediaModel.getUserGalleryDOM();
     gallerySection.appendChild(mediaGallery);
   });
 }
 
-async function displayInsetLikesAndPrice(photographer) {
-  // calcul nb de likes
+function totalLike(medias) {
+  let likes = 0;
+  medias.forEach((media) => {
+    likes += media.likes;
+  });
+  return likes;
+}
+
+async function displayInsetLikesAndPrice(photographer, medias) {
+  const totalLikes = totalLike(medias);
   const divLikes = document.querySelector('.likes');
   const p = document.createElement('p');
-  p.textContent = 'nblikes';
+  p.textContent = totalLikes;
   const heartIcon = document.createElement('i');
   heartIcon.classList = 'fa-solid fa-xs fa-heart';
   divLikes.appendChild(p);
@@ -45,12 +55,47 @@ async function displayInsetLikesAndPrice(photographer) {
   divAmount.textContent = `${photographer.price}€ / jour`;
 }
 
+function sortMedias(medias) {
+  const sortValue = document.querySelector('#sort').value;
+  if (sortValue === 'popularity') {
+    medias.sort((a, b) => b.likes - a.likes);
+  } else if (sortValue === 'date') {
+    medias.sort((a, b) => {
+      const dateA = new Date(a.date);
+      const dateB = new Date(b.date);
+      return dateB - dateA;
+    });
+  } else if (sortValue === 'title') {
+    medias.sort((a, b) => {
+      if (a.title < b.title) {
+        return -1;
+      }
+      if (a.title > b.title) {
+        return 1;
+      }
+      return 0;
+    });
+  }
+  return medias;
+}
+
 async function init() {
-// Récupère les datas des photographes
-  const { photographer, medias } = await getPhotographersDatas();
-  displayPhotographerHeader(photographer);
-  displayPhotographerMedias(medias, photographer.name);
-  displayInsetLikesAndPrice(photographer);
+  getPhotographersDatas()
+    .then((response) => {
+      // eslint-disable-next-line prefer-const
+      let { photographer, medias } = response;
+      displayPhotographerHeader(photographer);
+      medias = sortMedias(medias);
+      displayPhotographerMedias(medias, photographer.name);
+      displayInsetLikesAndPrice(photographer, medias);
+
+      const sortSelect = document.querySelector('#sort');
+      sortSelect.addEventListener('change', () => {
+        console.log('changed');
+        medias = sortMedias(medias);
+        displayInsetLikesAndPrice(medias, photographer.name);
+      });
+    });
 }
 
 init();

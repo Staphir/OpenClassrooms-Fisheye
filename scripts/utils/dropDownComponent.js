@@ -25,7 +25,7 @@ var divSort, i, j, l, ll, selectElement, a, b, c;
 divSort = document.querySelectorAll('.div-sort');
 l = divSort.length;
 for (i = 0; i < l; i += 1) {
-  selectElement = divSort[i].querySelectorAll('select')[0];
+  selectElement = divSort[i].querySelector('select');
   ll = selectElement.length;
   // for each element, create a new DIV that will act as the selected item:
   a = document.createElement('div');
@@ -44,7 +44,7 @@ for (i = 0; i < l; i += 1) {
       // when an item is clicked, update the original select box,
       // and the selected item:
       var y, i, k, s, h, sl, yl;
-      s = this.parentNode.parentNode.querySelectorAll('select')[0];
+      s = this.parentNode.parentNode.querySelector('select');
       sl = s.length;
       h = this.parentNode.previousSibling;
       for (i = 0; i < sl; i += 1) {

@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-unused-vars
 function photographerTemplate(data) {
   const {
     name, id, city, country, tagline, price, portrait,
@@ -72,6 +73,7 @@ function photographerTemplate(data) {
   };
 }
 
+// eslint-disable-next-line no-unused-vars
 function mediaTemplate(data, photographerName) {
   const {
     id, photographerId, title, image, video, likes, date, price,
@@ -100,7 +102,7 @@ function mediaTemplate(data, photographerName) {
     p.textContent = title;
     const divLikes = document.createElement('div');
     // nombre de like chiffre dynamique
-    divLikes.textContent = price;
+    divLikes.textContent = likes;
     const i = document.createElement('i');
     i.classList.add('fa-solid');
     i.classList.add('fa-heart');
