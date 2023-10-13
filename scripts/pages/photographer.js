@@ -34,6 +34,10 @@ async function displayPhotographerMedias(medias, photographerName) {
   });
 }
 
+function removePhotographerMedias() {
+  document.querySelector('.gallery').innerHTML = '';
+}
+
 function totalLike(medias) {
   let likes = 0;
   medias.forEach((media) => {
@@ -55,8 +59,7 @@ async function displayInsetLikesAndPrice(photographer, medias) {
   divAmount.textContent = `${photographer.price}€ / jour`;
 }
 
-function sortMedias(medias) {
-  const sortValue = document.querySelector('#sort').value;
+function sortMedias(medias, sortValue = 'popularity') {
   if (sortValue === 'popularity') {
     medias.sort((a, b) => b.likes - a.likes);
   } else if (sortValue === 'date') {
@@ -82,18 +85,22 @@ function sortMedias(medias) {
 async function init() {
   getPhotographersDatas()
     .then((response) => {
-      // eslint-disable-next-line prefer-const
+    // eslint-disable-next-line prefer-const
       let { photographer, medias } = response;
       displayPhotographerHeader(photographer);
       medias = sortMedias(medias);
       displayPhotographerMedias(medias, photographer.name);
       displayInsetLikesAndPrice(photographer, medias);
-
-      const sortSelect = document.querySelector('#sort');
-      sortSelect.addEventListener('change', () => {
-        console.log('changed');
-        medias = sortMedias(medias);
-        displayInsetLikesAndPrice(medias, photographer.name);
+      const sortElements = document.querySelectorAll('.sort-element');
+      const sortButton = document.querySelector('#btn');
+      sortElements.forEach((element) => {
+        element.addEventListener('click', () => {
+        // remove gallery of medias
+          document.querySelector('.gallery').innerHTML = '';
+          medias = sortMedias(medias, element.id);
+          displayPhotographerMedias(medias, photographer.name);
+          sortButton.innerHTML = `${element.textContent}<i class="fa-solid fa-caret-down" id="arrow"></i>`;
+        });
       });
     });
 }
