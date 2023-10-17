@@ -34,10 +34,6 @@ async function displayPhotographerMedias(medias, photographerName) {
   });
 }
 
-function removePhotographerMedias() {
-  document.querySelector('.gallery').innerHTML = '';
-}
-
 function totalLike(medias) {
   let likes = 0;
   medias.forEach((media) => {
@@ -82,6 +78,11 @@ function sortMedias(medias, sortValue = 'popularity') {
   return medias;
 }
 
+function headerModalPhotographerName(photographerName) {
+  const headerTitle = document.querySelector('#contact_title');
+  headerTitle.textContent = `Contactez-moi ${photographerName}`;
+}
+
 async function init() {
   getPhotographersDatas()
     .then((response) => {
@@ -102,6 +103,7 @@ async function init() {
           sortButton.innerHTML = `${element.textContent}<i class="fa-solid fa-caret-down" id="arrow"></i>`;
         });
       });
+      headerModalPhotographerName(photographer.name);
     });
 }
 
