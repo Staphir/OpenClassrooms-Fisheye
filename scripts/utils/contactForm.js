@@ -22,11 +22,56 @@ function closeModal() {
   modalOpenBtn.focus();
 }
 
+function formComplete(formInformations) {
+  let error = false;
+  const parentDiv = formInformations[0].parentElement;
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  formInformations.forEach((information) => {
+    if (information.id === 'firstname' && !information.value) {
+      error = true;
+      const errorText = document.createElement('p');
+      errorText.innerHTML = 'Veuillez entrer un prénom';
+      errorText.className = 'text-error';
+      parentDiv.insertBefore(errorText, information.nextSibling);
+    } else if (information.id === 'name' && !information.value) {
+      error = true;
+      const errorText = document.createElement('p');
+      errorText.innerHTML = 'Veuillez entrer un nom';
+      errorText.className = 'text-error';
+      parentDiv.insertBefore(errorText, information.nextSibling);
+    } else if (information.id === 'email' && !information.value && !emailRegex.test(information.value)) {
+      error = true;
+      const errorText = document.createElement('p');
+      errorText.innerHTML = 'Veuillez entrer un email valide';
+      errorText.className = 'text-error';
+      parentDiv.insertBefore(errorText, information.nextSibling);
+    } else if (information.id === 'message' && !information.value) {
+      error = true;
+      const errorText = document.createElement('p');
+      errorText.innerHTML = 'Veuillez entrer un message';
+      errorText.className = 'text-error';
+      parentDiv.insertBefore(errorText, information.nextSibling);
+    }
+  });
+  return !error;
+}
+
+function cleanTextError(formInformations) {
+  formInformations.forEach((information) => {
+    if (information.nextSibling.className === 'text-error') {
+      information.parentElement.removeChild(information.nextSibling);
+    }
+  });
+}
+
 function sendContactMessage(ev) {
   ev.preventDefault();
   const formInformations = document.querySelectorAll('.form_information');
-  formInformations.forEach((information) => {
-    // eslint-disable-next-line no-console
-    console.log(information.value);
-  });
+  cleanTextError(formInformations);
+  if (formComplete(formInformations) === true) {
+    formInformations.forEach((information) => {
+      // eslint-disable-next-line no-console
+      console.log(information.value);
+    });
+  }
 }

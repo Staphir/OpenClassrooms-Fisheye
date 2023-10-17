@@ -51,14 +51,14 @@
       </header>
       <form>
         <div>
-          <label>Prénom</label>
-          <input class="form_information" type="text" required/>
-          <label>Nom</label>
-          <input class="form_information" type="text" required/>
-          <label>Email</label>
-          <input class="form_information" type="email" required/>
-          <label>Votre message</label>
-          <textarea class="form_information" required></textarea>
+          <label for="firstname">Prénom</label>
+          <input class="form_information" id="firstname" type="text" required/>
+          <label for="name">Nom</label>
+          <input class="form_information" id="name" type="text" required/>
+          <label for="email">Email</label>
+          <input class="form_information" id="email" type="email" required/>
+          <label for="message">Votre message</label>
+          <textarea class="form_information" id="message" required></textarea>
         </div>
         <button class="contact_button" onclick="sendContactMessage(event)">Envoyer</button>
       </form>
