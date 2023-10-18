@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-unused-vars
 function displayModal() {
   const modal = document.querySelector('#contact_modal');
   const main = document.querySelector('main');
@@ -10,6 +11,7 @@ function displayModal() {
   modalCloseBtn.focus();
 }
 
+// eslint-disable-next-line no-unused-vars
 function closeModal() {
   const modal = document.querySelector('#contact_modal');
   const main = document.querySelector('main');
@@ -64,6 +66,7 @@ function cleanTextError(formInformations) {
   });
 }
 
+// eslint-disable-next-line no-unused-vars
 function sendContactMessage(ev) {
   ev.preventDefault();
   const formInformations = document.querySelectorAll('.form_information');

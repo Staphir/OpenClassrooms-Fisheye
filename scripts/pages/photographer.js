@@ -24,35 +24,42 @@ async function displayPhotographerHeader(photographer) {
   photographHeader.appendChild(photographImgDOM);
 }
 
-async function displayPhotographerMedias(medias, photographerName) {
+async function displayPhotographerMedias(medias, photographer) {
   const gallerySection = document.querySelector('.gallery');
   medias.forEach((media) => {
     // eslint-disable-next-line no-undef
-    const mediaModel = mediaTemplate(media, photographerName);
+    const mediaModel = mediaTemplate(media, photographer);
     const mediaGallery = mediaModel.getUserGalleryDOM();
     gallerySection.appendChild(mediaGallery);
   });
 }
 
-function totalLike(medias) {
+function setTotalLikes(photographer, medias) {
   let likes = 0;
   medias.forEach((media) => {
     likes += media.likes;
   });
-  return likes;
+  photographer.likes = likes;
 }
 
 async function displayInsetLikesAndPrice(photographer, medias) {
-  const totalLikes = totalLike(medias);
+  setTotalLikes(photographer, medias);
   const divLikes = document.querySelector('.likes');
   const p = document.createElement('p');
-  p.textContent = totalLikes;
+  p.textContent = photographer.likes;
   const heartIcon = document.createElement('i');
   heartIcon.classList = 'fa-solid fa-xs fa-heart';
   divLikes.appendChild(p);
   divLikes.appendChild(heartIcon);
   const divAmount = document.querySelector('.amount');
   divAmount.textContent = `${photographer.price}€ / jour`;
+}
+
+function increaseLikes() {
+  const pInsetLikes = document.querySelector('.likes').firstChild;
+  let likes = parseInt(pInsetLikes.textContent, 10);
+  likes += 1;
+  pInsetLikes.textContent = likes;
 }
 
 function sortMedias(medias, sortValue = 'popularity') {
@@ -90,7 +97,7 @@ async function init() {
       let { photographer, medias } = response;
       displayPhotographerHeader(photographer);
       medias = sortMedias(medias);
-      displayPhotographerMedias(medias, photographer.name);
+      displayPhotographerMedias(medias, photographer);
       displayInsetLikesAndPrice(photographer, medias);
       const sortElements = document.querySelectorAll('.sort-element');
       const sortButton = document.querySelector('#btn');
@@ -99,7 +106,7 @@ async function init() {
         // remove gallery of medias
           document.querySelector('.gallery').innerHTML = '';
           medias = sortMedias(medias, element.id);
-          displayPhotographerMedias(medias, photographer.name);
+          displayPhotographerMedias(medias, photographer);
           sortButton.innerHTML = `${element.textContent}<i class="fa-solid fa-caret-down" id="arrow"></i>`;
         });
       });

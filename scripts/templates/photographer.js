@@ -3,6 +3,7 @@ function photographerTemplate(data) {
   const {
     name, id, city, country, tagline, price, portrait,
   } = data;
+  let likes;
 
   const picture = `assets/photographers/${portrait}`;
   const photographerPage = `./photographer.html?id=${id}`;
@@ -67,6 +68,7 @@ function photographerTemplate(data) {
     tagline,
     price,
     portrait,
+    likes,
     getUserCardDOM,
     getUserInformationsDOM,
     getUserImgDOM,
@@ -74,24 +76,21 @@ function photographerTemplate(data) {
 }
 
 // eslint-disable-next-line no-unused-vars
-function mediaTemplate(data, photographerName) {
+function mediaTemplate(data, photographer) {
   const {
     id, photographerId, title, image, video, likes, date, price,
   } = data;
-  const firstname = photographerName.split(' ')[0];
+  const firstname = photographer.name.split(' ')[0];
 
   function getUserGalleryDOM() {
     const divAllBlock = document.createElement('div');
     divAllBlock.className = 'media';
     if (image) {
-      // const figure = document.createElement('figure');
       const img = document.createElement('img');
-      // changer Mimi en name
       img.src = `assets/Sample Photos/${firstname}/${image}`;
       divAllBlock.appendChild(img);
     } else {
       const videoElement = document.createElement('video');
-      // changer Mimi en name
       videoElement.src = `assets/Sample Photos/${firstname}/${video}`;
       videoElement.controls = true;
       divAllBlock.appendChild(videoElement);
@@ -101,12 +100,24 @@ function mediaTemplate(data, photographerName) {
     const p = document.createElement('p');
     p.textContent = title;
     const divLikes = document.createElement('div');
-    // nombre de like chiffre dynamique
     divLikes.textContent = likes;
     const i = document.createElement('i');
     i.classList.add('fa-solid');
     i.classList.add('fa-heart');
     i.ariaLabel = 'likes';
+
+    i.addEventListener('click', () => {
+      if (!divLikes.classList.contains('liked')) {
+        let nbLikes = parseInt(divLikes.textContent, 10);
+        nbLikes += 1;
+        divLikes.textContent = nbLikes;
+        divLikes.classList.add('liked');
+        divLikes.appendChild(i);
+        photographer.likes += 1;
+        increaseLikes();
+      }
+    });
+
     divLikes.appendChild(i);
     divTextMedia.appendChild(p);
     divTextMedia.appendChild(divLikes);
@@ -122,6 +133,7 @@ function mediaTemplate(data, photographerName) {
     likes,
     date,
     price,
+    photographer,
     getUserGalleryDOM,
   };
 }
