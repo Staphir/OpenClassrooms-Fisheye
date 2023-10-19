@@ -3,7 +3,6 @@ function photographerTemplate(data) {
   const {
     name, id, city, country, tagline, price, portrait,
   } = data;
-  let likes;
 
   const picture = `assets/photographers/${portrait}`;
   const photographerPage = `./photographer.html?id=${id}`;
@@ -68,7 +67,6 @@ function photographerTemplate(data) {
     tagline,
     price,
     portrait,
-    likes,
     getUserCardDOM,
     getUserInformationsDOM,
     getUserImgDOM,
@@ -81,7 +79,6 @@ function mediaTemplate(data, photographer) {
     id, photographerId, title, image, video, likes, date, price,
   } = data;
   const firstname = photographer.name.split(' ')[0];
-
   function getUserGalleryDOM() {
     const divAllBlock = document.createElement('div');
     divAllBlock.className = 'media';
@@ -113,7 +110,9 @@ function mediaTemplate(data, photographer) {
         divLikes.textContent = nbLikes;
         divLikes.classList.add('liked');
         divLikes.appendChild(i);
-        photographer.likes += 1;
+        // eslint-disable-next-line no-undef
+        totalLikes += 1;
+        // eslint-disable-next-line no-undef
         increaseLikes();
       }
     });

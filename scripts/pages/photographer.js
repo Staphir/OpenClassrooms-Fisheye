@@ -1,3 +1,5 @@
+let totalLikes = 0;
+
 async function getPhotographersDatas() {
   try {
     const response = await fetch('data/photographers.json');
@@ -27,6 +29,7 @@ async function displayPhotographerHeader(photographer) {
 async function displayPhotographerMedias(medias, photographer) {
   const gallerySection = document.querySelector('.gallery');
   medias.forEach((media) => {
+    totalLikes += media.likes;
     // eslint-disable-next-line no-undef
     const mediaModel = mediaTemplate(media, photographer);
     const mediaGallery = mediaModel.getUserGalleryDOM();
@@ -34,16 +37,12 @@ async function displayPhotographerMedias(medias, photographer) {
   });
 }
 
-function setTotalLikes(photographer, medias) {
-  let likes = 0;
-  medias.forEach((media) => {
-    likes += media.likes;
-  });
-  photographer.likes = likes;
+function increaseLikes() {
+  const pInsetLikes = document.querySelector('.likes').firstChild;
+  pInsetLikes.textContent = totalLikes;
 }
 
-async function displayInsetLikesAndPrice(photographer, medias) {
-  setTotalLikes(photographer, medias);
+async function displayInsetLikesAndPrice(photographer) {
   const divLikes = document.querySelector('.likes');
   const p = document.createElement('p');
   p.textContent = photographer.likes;
@@ -53,13 +52,7 @@ async function displayInsetLikesAndPrice(photographer, medias) {
   divLikes.appendChild(heartIcon);
   const divAmount = document.querySelector('.amount');
   divAmount.textContent = `${photographer.price}€ / jour`;
-}
-
-function increaseLikes() {
-  const pInsetLikes = document.querySelector('.likes').firstChild;
-  let likes = parseInt(pInsetLikes.textContent, 10);
-  likes += 1;
-  pInsetLikes.textContent = likes;
+  increaseLikes();
 }
 
 function sortMedias(medias, sortValue = 'popularity') {
