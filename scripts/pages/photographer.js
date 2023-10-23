@@ -28,12 +28,17 @@ async function displayPhotographerHeader(photographer) {
 
 async function displayPhotographerMedias(medias, photographer) {
   const gallerySection = document.querySelector('.gallery');
-  medias.forEach((media) => {
+  const carouselList = document.querySelector('#carousel');
+  medias.forEach((media, index) => {
     totalLikes += media.likes;
     // eslint-disable-next-line no-undef
-    const mediaModel = mediaTemplate(media, photographer);
+    const mediaModel = mediaTemplate(media, photographer, index);
     const mediaGallery = mediaModel.getUserGalleryDOM();
     gallerySection.appendChild(mediaGallery);
+    // eslint-disable-next-line no-undef
+    const carouselModel = carouselTemplate(media, photographer.name, index);
+    const carouselMedia = carouselModel.getUserCarouselDOM();
+    carouselList.appendChild(carouselMedia);
   });
 }
 
@@ -96,8 +101,8 @@ async function init() {
       const sortButton = document.querySelector('#btn');
       sortElements.forEach((element) => {
         element.addEventListener('click', () => {
-        // remove gallery of medias
           document.querySelector('.gallery').innerHTML = '';
+          document.querySelector('#carousel').innerHTML = '';
           medias = sortMedias(medias, element.id);
           displayPhotographerMedias(medias, photographer);
           sortButton.innerHTML = `${element.textContent}<i class="fa-solid fa-caret-down" id="arrow"></i>`;

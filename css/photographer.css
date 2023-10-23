@@ -284,3 +284,55 @@ form textarea {
 .likes p {
     margin-right: 5px;
 }
+
+.div-carousel {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    overflow: auto;
+    background-color: rgba(26, 39, 156, 0.4);
+}
+
+#carousel {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    animation-name: carouselopen;
+    animation-duration: 0.8s;
+}
+
+@keyframes carouselopen {
+    from {
+        opacity: 0;
+        transform: translateY(-150px);
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.carousel-item {
+    list-style: none;
+    display: none;
+    /* justify-content: space-between; */
+    align-items: center;
+}
+
+.carousel-item img, .carousel-item video {
+    width: 1050px;
+    height: 900px;
+    object-fit: cover;
+}
+
+.right-panel {
+    display: flex;
+    flex-direction: column;
+}
+
+.fa-angle-left, .fa-angle-right, .fa-xmark {
+    color: #901C1C;
+}
