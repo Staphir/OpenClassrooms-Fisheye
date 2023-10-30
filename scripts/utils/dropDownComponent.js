@@ -20,3 +20,10 @@ document.documentElement.addEventListener('click', () => {
     toggleDropdown();
   }
 });
+
+dropdownBtn.addEventListener('keydown', (event) => {
+  if (event.key.lenght === 1 && event.key === 'Tab') {
+    console.log(document.querySelector('#media-0').firstChild);
+    document.querySelector('#media-0').firstChild.focus();
+  }
+});

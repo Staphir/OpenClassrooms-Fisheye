@@ -230,6 +230,7 @@ form textarea {
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
+    padding: 0;
     margin: 88px 100px 60px 100px;
 }
 
@@ -256,6 +257,7 @@ form textarea {
 
 .divTextMedia .fa-heart {
     margin-left: 5px;
+    cursor: pointer;
 }
 
 .inset-likes-amount {
@@ -295,10 +297,12 @@ form textarea {
     width: 100%;
     overflow: auto;
     background-color: rgba(26, 39, 156, 0.4);
+    justify-content: center;
 }
 
 #carousel {
     position: relative;
+    padding: 0;
     display: flex;
     justify-content: space-between;
     animation-name: carouselopen;
@@ -318,21 +322,43 @@ form textarea {
 .carousel-item {
     list-style: none;
     display: none;
-    /* justify-content: space-between; */
-    align-items: center;
+    background-color: #FAFAFACC;
+    border-radius: 5px;
 }
 
-.carousel-item img, .carousel-item video {
-    width: 1050px;
-    height: 900px;
-    object-fit: cover;
-}
-
-.right-panel {
+.carousel-media {
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    position: relative;
+    top: 10px;
+}
+
+.carousel-media img, .carousel-media video {
+    /* width: 1050px; */
+    /* height: auto; */
+    max-height: 85vh;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.carousel-media p {
+    color: #901C1C;
+    font-size: 24px;
+}
+
+.close-carousel {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+}
+
+.controls {
+    align-self: center;
+    margin: 0 20px;
 }
 
 .fa-angle-left, .fa-angle-right, .fa-xmark {
     color: #901C1C;
+    cursor: pointer;
 }

@@ -88,6 +88,28 @@ function headerModalPhotographerName(photographerName) {
   headerTitle.textContent = `Contactez-moi ${photographerName}`;
 }
 
+document.addEventListener('keydown', (event) => {
+  if (event.key === 'ArrowRight') {
+    // eslint-disable-next-line no-undef
+    nextItem();
+  }
+
+  if (event.key === 'ArrowLeft') {
+    // eslint-disable-next-line no-undef
+    previousItem();
+  }
+
+  if (event.key === 'Escape') {
+    if (document.querySelector('.div-carousel').style.display === 'flex') {
+      // eslint-disable-next-line no-undef
+      closeCarousel();
+    } else if (document.querySelector('#contact_modal').style.display === 'block') {
+      // eslint-disable-next-line no-undef
+      closeModal();
+    }
+  }
+});
+
 async function init() {
   getPhotographersDatas()
     .then((response) => {

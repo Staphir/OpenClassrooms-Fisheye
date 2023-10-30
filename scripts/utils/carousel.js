@@ -1,19 +1,26 @@
 let currentIndex = 0;
 
 // eslint-disable-next-line no-unused-vars
-function displayCarousel() {
+function displayCarousel(mediaId) {
   const divCarousel = document.querySelector('.div-carousel');
-  const main = document.querySelector('main');
-  const body = document.querySelector('body');
-  const mediaSelected = this.parentNode;
-  currentIndex = parseInt(mediaSelected.id.split('-')[1], 10);
-  const itemSelected = document.querySelector(`#item-${currentIndex}`);
+  if (divCarousel.ariaHidden === 'true') {
+    const main = document.querySelector('main');
+    const body = document.querySelector('body');
+    if (this.parentNode) {
+      const mediaSelected = this.parentNode;
+      // eslint-disable-next-line no-param-reassign
+      currentIndex = parseInt(mediaSelected.id.split('-')[1], 10);
+    } else {
+      currentIndex = mediaId;
+    }
+    const itemSelected = document.querySelector(`#item-${currentIndex}`);
 
-  itemSelected.style.display = 'flex';
-  divCarousel.style.display = 'block';
-  divCarousel.ariaHidden = 'false';
-  main.ariaHidden = 'true';
-  body.classList.add('no-scroll');
+    itemSelected.style.display = 'flex';
+    divCarousel.style.display = 'flex';
+    divCarousel.ariaHidden = 'false';
+    main.ariaHidden = 'true';
+    body.classList.add('no-scroll');
+  }
 }
 
 // eslint-disable-next-line no-unused-vars
@@ -53,17 +60,3 @@ function previousItem() {
   currentItem.style.display = 'none';
   newItem.style.display = 'flex';
 }
-
-document.addEventListener('keydown', (event) => {
-  if (event.key === 'ArrowRight') {
-    nextItem();
-  }
-
-  if (event.key === 'ArrowLeft') {
-    previousItem();
-  }
-
-  if (event.key === 'Escape') {
-    closeCarousel();
-  }
-});

@@ -3,12 +3,13 @@ function displayModal() {
   const modal = document.querySelector('#contact_modal');
   const main = document.querySelector('main');
   const body = document.querySelector('body');
-  const modalCloseBtn = document.querySelector('#modal_close');
+  // const modalCloseBtn = document.querySelector('#modal_close');
+  const modalFirstNameField = document.querySelector('#firstname');
   modal.style.display = 'block';
   modal.setAttribute('aria-hidden', 'false');
   main.setAttribute('aria-hidden', 'true');
   body.classList.add('no-scroll');
-  modalCloseBtn.focus();
+  modalFirstNameField.focus();
 }
 
 // eslint-disable-next-line no-unused-vars

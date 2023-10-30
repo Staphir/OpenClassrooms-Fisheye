@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
 <head>
-  <link href="css/style.css" rel="stylesheet" type="text/css" />
+  <link href="css/style.css" rel="stylesheet" type="text/css">
   <meta charset="utf-8">
   <link rel="icon" type="image/png" href="assets/favicon.png">
   <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
@@ -11,7 +11,7 @@
 <body>
   <header>
     <a href="./index.html">
-      <img src="assets/images/logo.png" class="logo" alt="Fisheye Home page"/>
+      <img src="assets/images/logo.png" class="logo" alt="Fisheye Home page">
     </a>
   </header>
   <main id="main" aria-hidden="false">
@@ -19,24 +19,23 @@
       <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
     </div>
     <div class="div-sort">
-        Trier par
-        <button class="btn" id="btn">
+      Trier par
+      <button class="btn" id="btn">
+        Popularité
+        <i class="fa-solid fa-caret-down" id="arrow"></i>
+      </button>
+      <div class="dropdown" id="dropdown">
+        <a class="sort-element" id="popularity" >
           Popularité
-          <i class="fa-solid fa-caret-down" id="arrow"></i>
-        </button>
-        <div class="dropdown" id="dropdown">
-          <a class="sort-element" id="popularity" >
-            Popularité
-          </a>
-          <a class="sort-element" id="date" >
-            Date
-          </a>
-          <a class="sort-element" id="title" >
-            Titre
-          </a>
-        </div>
+        </a>
+        <a class="sort-element" id="date" >
+          Date
+        </a>
+        <a class="sort-element" id="title" >
+          Titre
+        </a>
       </div>
-    </div>      
+    </div>
     <section class="gallery" id="gallery"></section>
     <div class="inset-likes-amount">
       <div class="likes"></div>
@@ -44,10 +43,10 @@
     </div>
   </main>
   <div id="contact_modal">
-    <div class="modal" aria-hidden="true" role="dialog" aria-describedby="modalContact">
+    <div class="modal" aria-hidden="true" role="dialog" aria-describedby="contact_modal">
       <header>
         <h1 id="contact_title"></h1>
-        <img id="modal_close" src="assets/icons/close.svg" onclick="closeModal()" />
+        <img id="modal_close" src="assets/icons/close.svg" onclick="closeModal()" alt="fermer modal"/>
       </header>
       <form>
         <div>
@@ -65,7 +64,7 @@
     </div>
   </div>
   <div class="div-carousel" aria-hidden="true">
-    <ul id="carousel"></ul>
+    <ul id="carousel" role="dialog"></ul>
   </div>
   <script src="/scripts/utils/dropDownComponent.js"></script>
   <script src="/scripts/utils/carousel.js"></script>

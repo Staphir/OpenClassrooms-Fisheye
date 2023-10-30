@@ -13,15 +13,33 @@ function mediaTemplate(data, photographer, index) {
     if (image) {
       const img = document.createElement('img');
       img.src = `assets/Sample Photos/${firstname}/${image}`;
+      img.alt = title;
+      img.tabIndex = 0;
       // eslint-disable-next-line no-undef
       img.addEventListener('click', displayCarousel);
+      img.addEventListener('keydown', (event) => {
+        if (event.key === 'Enter') {
+          // eslint-disable-next-line no-undef
+          displayCarousel(mediaId);
+        }
+      });
       divAllBlock.appendChild(img);
     } else {
       const videoElement = document.createElement('video');
+      const videoTitle = document.createElement('title');
       videoElement.src = `assets/Sample Photos/${firstname}/${video}`;
       videoElement.controls = true;
+      videoElement.tabIndex = 0;
       // eslint-disable-next-line no-undef
       videoElement.addEventListener('click', displayCarousel);
+      videoElement.addEventListener('keydown', (event) => {
+        if (event.key === 'Enter') {
+          // eslint-disable-next-line no-undef
+          displayCarousel(mediaId);
+        }
+      });
+      videoTitle.textContent = title;
+      videoElement.appendChild(videoTitle);
       divAllBlock.appendChild(videoElement);
     }
     const divTextMedia = document.createElement('div');
