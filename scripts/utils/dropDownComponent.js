@@ -1,9 +1,11 @@
+'use strict';
+
 const dropdownBtn = document.querySelector('#btn');
 const dropdownMenu = document.querySelector('#dropdown');
 const toggleArrow = document.querySelector('#arrow');
 
 // Toggle dropdown function
-const toggleDropdown = function () {
+const toggleDropdown = () => {
   dropdownMenu.classList.toggle('show');
   toggleArrow.classList.toggle('arrow');
 };
@@ -23,7 +25,6 @@ document.documentElement.addEventListener('click', () => {
 
 dropdownBtn.addEventListener('keydown', (event) => {
   if (event.key.lenght === 1 && event.key === 'Tab') {
-    console.log(document.querySelector('#media-0').firstChild);
     document.querySelector('#media-0').firstChild.focus();
   }
 });

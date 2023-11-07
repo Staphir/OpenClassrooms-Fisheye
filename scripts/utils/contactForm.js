@@ -1,3 +1,5 @@
+'use strict';
+
 // eslint-disable-next-line no-unused-vars
 function displayModal() {
   const modal = document.querySelector('#contact_modal');

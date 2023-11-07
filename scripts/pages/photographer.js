@@ -1,3 +1,5 @@
+'use strict';
+
 let totalLikes = 0;
 
 async function getPhotographersDatas() {
@@ -126,7 +128,9 @@ async function init() {
           document.querySelector('.gallery').innerHTML = '';
           document.querySelector('#carousel').innerHTML = '';
           medias = sortMedias(medias, element.id);
+          const currentTotalLikes = totalLikes;
           displayPhotographerMedias(medias, photographer);
+          totalLikes = currentTotalLikes;
           sortButton.innerHTML = `${element.textContent}<i class="fa-solid fa-caret-down" id="arrow"></i>`;
         });
       });

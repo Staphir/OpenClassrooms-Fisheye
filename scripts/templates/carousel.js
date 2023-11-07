@@ -1,3 +1,5 @@
+'use strict';
+
 // eslint-disable-next-line no-unused-vars
 function carouselTemplate(data, photographerName, index) {
   const {
@@ -10,6 +12,7 @@ function carouselTemplate(data, photographerName, index) {
     const li = document.createElement('li');
     li.classList = 'carousel-item';
     li.id = `item-${itemId}`;
+    li.role = 'list-item';
 
     // left control panel
     // const divLeftPanel = document.createElement('div');

@@ -1,3 +1,5 @@
+'use strict';
+
 let currentIndex = 0;
 
 // eslint-disable-next-line no-unused-vars
