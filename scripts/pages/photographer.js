@@ -2,6 +2,12 @@
 
 let totalLikes = 0;
 
+/**
+ * Use fetch request and photographer id to get photographer informations and his medias
+ *
+ * @async
+ * @returns {{photographer: object; medias: object}} - photographer informations and his medias
+ */
 async function getPhotographersDatas() {
   try {
     const response = await fetch('data/photographers.json');
@@ -18,25 +24,42 @@ async function getPhotographersDatas() {
   }
 }
 
+/**
+ * Display the banner of photographer
+ *
+ * @async
+ * @param {object} photographer - photographer informations
+ */
 async function displayPhotographerHeader(photographer) {
   const photographHeader = document.querySelector('.photograph-header');
   // eslint-disable-next-line no-undef
   const photographerModel = photographerTemplate(photographer);
   const photographInformationsDOM = photographerModel.getUserInformationsDOM();
   const photographImgDOM = photographerModel.getUserImgDOM();
+
   photographHeader.insertBefore(photographInformationsDOM, photographHeader.children[0]);
   photographHeader.appendChild(photographImgDOM);
 }
 
+/**
+ * Display the gallery of medias of photographer
+ *
+ * @async
+ * @param {object} medias - medias informations of photographer
+ * @param {object} photographer - photographer informations
+ */
 async function displayPhotographerMedias(medias, photographer) {
   const gallerySection = document.querySelector('.gallery');
   const carouselList = document.querySelector('#carousel');
+
   medias.forEach((media, index) => {
     totalLikes += media.likes;
+
     // eslint-disable-next-line no-undef
     const mediaModel = mediaTemplate(media, photographer, index);
     const mediaGallery = mediaModel.getUserGalleryDOM();
     gallerySection.appendChild(mediaGallery);
+
     // eslint-disable-next-line no-undef
     const carouselModel = carouselTemplate(media, photographer.name, index);
     const carouselMedia = carouselModel.getUserCarouselDOM();
@@ -44,11 +67,20 @@ async function displayPhotographerMedias(medias, photographer) {
   });
 }
 
+/**
+ * Update total likes text
+ */
 function increaseLikes() {
   const pInsetLikes = document.querySelector('.likes').firstChild;
   pInsetLikes.textContent = totalLikes;
 }
 
+/**
+ * Display inset with total likes and service price
+ *
+ * @async
+ * @param {object} photographer - photographer informations
+ */
 async function displayInsetLikesAndPrice(photographer) {
   const divLikes = document.querySelector('.likes');
   const p = document.createElement('p');
@@ -59,9 +91,17 @@ async function displayInsetLikesAndPrice(photographer) {
   divLikes.appendChild(heartIcon);
   const divAmount = document.querySelector('.amount');
   divAmount.textContent = `${photographer.price}€ / jour`;
+
   increaseLikes();
 }
 
+/**
+ * Sort medias of photographer with sortValue type (popularity, date or title)
+ *
+ * @param {object} medias - medias informations of photographer
+ * @param {string} sortValue - current sort type
+ * @returns {object} medias - sorted medias
+ */
 function sortMedias(medias, sortValue = 'popularity') {
   if (sortValue === 'popularity') {
     medias.sort((a, b) => b.likes - a.likes);
@@ -85,6 +125,11 @@ function sortMedias(medias, sortValue = 'popularity') {
   return medias;
 }
 
+/**
+ * Set modal contact title with correct photographer name
+ *
+ * @param {String} photographerName
+ */
 function headerModalPhotographerName(photographerName) {
   const headerTitle = document.querySelector('#contact_title');
   headerTitle.textContent = `Contactez-moi ${photographerName}`;
@@ -112,6 +157,11 @@ document.addEventListener('keydown', (event) => {
   }
 });
 
+/**
+ * Main function of photographer page
+ *
+ * @async
+ */
 async function init() {
   getPhotographersDatas()
     .then((response) => {
@@ -123,6 +173,7 @@ async function init() {
       displayInsetLikesAndPrice(photographer, medias);
       const sortElements = document.querySelectorAll('.sort-element');
       const sortButton = document.querySelector('#btn');
+
       sortElements.forEach((element) => {
         element.addEventListener('click', () => {
           document.querySelector('.gallery').innerHTML = '';
@@ -134,6 +185,7 @@ async function init() {
           sortButton.innerHTML = `${element.textContent}<i class="fa-solid fa-caret-down" id="arrow"></i>`;
         });
       });
+
       headerModalPhotographerName(photographer.name);
     });
 }

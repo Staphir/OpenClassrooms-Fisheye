@@ -335,8 +335,6 @@ form textarea {
 }
 
 .carousel-media img, .carousel-media video {
-    /* width: 1050px; */
-    /* height: auto; */
     max-height: 85vh;
     object-fit: cover;
     border-radius: 5px;

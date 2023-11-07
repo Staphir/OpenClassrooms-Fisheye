@@ -2,6 +2,11 @@
 
 let currentIndex = 0;
 
+/**
+ * Open lightbox on clicked media
+ *
+ * @param {int} mediaId - id of clicked media
+ */
 // eslint-disable-next-line no-unused-vars
 function displayCarousel(mediaId) {
   const divCarousel = document.querySelector('.div-carousel');
@@ -25,6 +30,9 @@ function displayCarousel(mediaId) {
   }
 }
 
+/**
+ * Close lightbox
+ */
 // eslint-disable-next-line no-unused-vars
 function closeCarousel() {
   const divCarousel = document.querySelector('.div-carousel');
@@ -39,6 +47,9 @@ function closeCarousel() {
   body.classList.remove('no-scroll');
 }
 
+/**
+ * Display next media
+ */
 // eslint-disable-next-line no-unused-vars
 function nextItem() {
   const currentItem = document.querySelector(`#item-${currentIndex}`);
@@ -49,6 +60,9 @@ function nextItem() {
   newItem.style.display = 'flex';
 }
 
+/**
+ * Display previous media
+ */
 // eslint-disable-next-line no-unused-vars
 function previousItem() {
   const currentItem = document.querySelector(`#item-${currentIndex}`);

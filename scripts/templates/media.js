@@ -1,5 +1,25 @@
 'use strict';
 
+/**
+ * Represent a media
+ *
+ * @param {object} data
+ * @param {object} photographer
+ * @param {int} index
+ * @returns {
+ *          {
+ *           id: int;
+ *           photographerId: int;
+ *           title: string;
+ *           image: string;
+ *           likes: int;
+ *           date: string;
+ *           price: int;
+ *           photographer: object;
+ *           getUserGalleryDOM: () => object;
+ *          }
+ *          }
+ */
 // eslint-disable-next-line no-unused-vars
 function mediaTemplate(data, photographer, index) {
   const {
@@ -8,6 +28,11 @@ function mediaTemplate(data, photographer, index) {
   const firstname = photographer.name.split(' ')[0];
   const mediaId = index;
 
+  /**
+   * Create DOM HTML of a media's card
+   *
+   * @returns {object} divAllBlock - tag on a media's card
+   */
   function getUserGalleryDOM() {
     const divAllBlock = document.createElement('div');
     divAllBlock.className = 'media';

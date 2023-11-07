@@ -1,12 +1,15 @@
 'use strict';
 
+/**
+ * Display contact modal
+ */
 // eslint-disable-next-line no-unused-vars
 function displayModal() {
   const modal = document.querySelector('#contact_modal');
   const main = document.querySelector('main');
   const body = document.querySelector('body');
-  // const modalCloseBtn = document.querySelector('#modal_close');
   const modalFirstNameField = document.querySelector('#firstname');
+
   modal.style.display = 'block';
   modal.setAttribute('aria-hidden', 'false');
   main.setAttribute('aria-hidden', 'true');
@@ -14,6 +17,9 @@ function displayModal() {
   modalFirstNameField.focus();
 }
 
+/**
+ * Close contact modal
+ */
 // eslint-disable-next-line no-unused-vars
 function closeModal() {
   const modal = document.querySelector('#contact_modal');
@@ -27,6 +33,12 @@ function closeModal() {
   modalOpenBtn.focus();
 }
 
+/**
+ * Check if form is ready (complete and informations are valid)
+ *
+ * @param {object} formInformations - form inputs
+ * @returns {boolean} error
+ */
 function formComplete(formInformations) {
   let error = false;
   const parentDiv = formInformations[0].parentElement;
@@ -61,6 +73,11 @@ function formComplete(formInformations) {
   return !error;
 }
 
+/**
+ * Remove all text error
+ *
+ * @param {object} formInformations - form inputs
+ */
 function cleanTextError(formInformations) {
   formInformations.forEach((information) => {
     if (information.nextSibling.className === 'text-error') {
@@ -69,6 +86,11 @@ function cleanTextError(formInformations) {
   });
 }
 
+/**
+ * Send contact informations (display in console) if all informations is corrects
+ *
+ * @param {*} ev
+ */
 // eslint-disable-next-line no-unused-vars
 function sendContactMessage(ev) {
   ev.preventDefault();

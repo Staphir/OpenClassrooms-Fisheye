@@ -1,5 +1,22 @@
 'use strict';
 
+/**
+ * Represents an item from the list of lightbox items
+ *
+ * @constructor
+ * @param {object} data
+ * @param {string} photographerName
+ * @param {int} index
+ * @returns {
+ *          {
+ *            title: string;
+ *            image: string;
+ *            video: string;
+ *            itemId: int;
+ *            getUserCarouselDOM: () => object;
+ *          }
+ *          }
+ */
 // eslint-disable-next-line no-unused-vars
 function carouselTemplate(data, photographerName, index) {
   const {
@@ -8,15 +25,17 @@ function carouselTemplate(data, photographerName, index) {
   const itemId = index;
   const firstname = photographerName.split(' ')[0];
 
+  /**
+   * Create li with DOM HTML to create one item of the list of lightbox's media items
+   *
+   * @returns {object} li - li tag with DOM HTML inside
+   */
   function getUserCarouselDOM() {
     const li = document.createElement('li');
     li.classList = 'carousel-item';
     li.id = `item-${itemId}`;
     li.role = 'list-item';
 
-    // left control panel
-    // const divLeftPanel = document.createElement('div');
-    // divLeftPanel.classList = 'left-panel';
     const divLeftArrow = document.createElement('div');
     divLeftArrow.role = 'button';
     divLeftArrow.classList = 'controls controls-left';
@@ -34,12 +53,11 @@ function carouselTemplate(data, photographerName, index) {
     spanLeftArrow.appendChild(iLeftArrow);
     divLeftArrow.appendChild(spanLeftArrow);
     divLeftArrow.appendChild(pLeftArrow);
-    // divLeftPanel.appendChild(divLeftArrow);
     li.appendChild(divLeftArrow);
 
     const divMedia = document.createElement('div');
     divMedia.classList = 'carousel-media';
-    // img/video balise
+
     if (image) {
       const img = document.createElement('img');
       img.src = `assets/Sample Photos/${firstname}/${image}`;
@@ -60,9 +78,6 @@ function carouselTemplate(data, photographerName, index) {
     divMedia.appendChild(pMediaTitle);
     li.appendChild(divMedia);
 
-    // right control panel
-    // const divRightPanel = document.createElement('div');
-    // divRightPanel.classList = 'right-panel';
     const divCloseCross = document.createElement('div');
     divCloseCross.role = 'button';
     divCloseCross.classList = 'close-carousel';
@@ -89,13 +104,11 @@ function carouselTemplate(data, photographerName, index) {
 
     divCloseCross.appendChild(pCloseCross);
     divCloseCross.appendChild(iCloseCross);
-    // divRightPanel.appendChild(divCloseCross);
     li.appendChild(divCloseCross);
 
     spanRightArrow.appendChild(iRightArrow);
     divRightArrow.appendChild(spanRightArrow);
     divRightArrow.appendChild(pRightArrow);
-    // divRightPanel.appendChild(divRightArrow);
     li.appendChild(divRightArrow);
 
     return li;
