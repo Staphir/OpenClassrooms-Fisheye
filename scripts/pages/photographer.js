@@ -177,7 +177,7 @@ function updateGallery(medias, photographer, sortValue, sortText) {
   displayPhotographerMedias(sortedMedias, photographer);
   totalLikes = currentTotalLikes;
 
-  sortButton.innerHTML = `${sortText}<i class="fa-solid fa-chevron-down" id="arrow"></i>`;
+  sortButton.innerHTML = `${sortText}<i class="fa-solid fa-chevron-down arrow" id="arrow"></i>`;
 
   // eslint-disable-next-line no-undef
   updateDropDownList(sortValue, medias, photographer);

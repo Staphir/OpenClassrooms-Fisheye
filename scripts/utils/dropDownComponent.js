@@ -2,12 +2,13 @@
 
 const dropdownBtn = document.querySelector('#btn');
 const dropdownMenu = document.querySelector('#dropdown');
-const toggleArrow = document.querySelector('#arrow');
 
-const toggleDropdown = () => {
+function toggleDropdown() {
+  const toggleArrow = document.querySelector('#arrow');
+
   dropdownMenu.classList.toggle('show');
   toggleArrow.classList.toggle('arrow');
-};
+}
 
 document.documentElement.addEventListener('click', () => {
   if (dropdownMenu.classList.contains('show')) {
@@ -15,15 +16,9 @@ document.documentElement.addEventListener('click', () => {
   }
 });
 
-dropdownBtn.addEventListener('click', (e) => {
-  e.stopPropagation();
+dropdownBtn.addEventListener('click', (event) => {
+  event.stopPropagation();
   toggleDropdown();
-});
-
-dropdownBtn.addEventListener('keydown', (event) => {
-  if (event.key === 'Escape') {
-    toggleDropdown();
-  }
 });
 
 /**
