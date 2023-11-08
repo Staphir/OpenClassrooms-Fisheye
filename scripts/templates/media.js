@@ -69,10 +69,10 @@ function mediaTemplate(data, photographer, index) {
       videoElement.appendChild(videoTitle);
       divAllBlock.appendChild(videoElement);
     }
-    const divTextMedia = document.createElement('div');
-    divTextMedia.className = 'divTextMedia';
-    const p = document.createElement('p');
-    p.textContent = title;
+    const spanTextMedia = document.createElement('span');
+    spanTextMedia.className = 'divTextMedia';
+    const titleMediaElement = document.createElement('cite');
+    titleMediaElement.textContent = title;
     const divLikes = document.createElement('div');
     divLikes.textContent = likes;
     const i = document.createElement('i');
@@ -95,9 +95,9 @@ function mediaTemplate(data, photographer, index) {
     });
 
     divLikes.appendChild(i);
-    divTextMedia.appendChild(p);
-    divTextMedia.appendChild(divLikes);
-    divAllBlock.appendChild(divTextMedia);
+    spanTextMedia.appendChild(titleMediaElement);
+    spanTextMedia.appendChild(divLikes);
+    divAllBlock.appendChild(spanTextMedia);
     return divAllBlock;
   }
 

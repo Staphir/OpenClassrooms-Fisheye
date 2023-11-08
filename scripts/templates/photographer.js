@@ -68,8 +68,8 @@ function photographerTemplate(data) {
    * @returns {object} div - tag on a photographer's information
    */
   function getUserInformationsDOM() {
-    const div = document.createElement('div');
-    div.id = 'photograph-informations';
+    const userInfohgroup = document.createElement('hgroup');
+    userInfohgroup.id = 'photograph-informations';
     const h1 = document.createElement('h1');
     h1.textContent = name;
     const localisation = document.createElement('p');
@@ -78,10 +78,10 @@ function photographerTemplate(data) {
     const description = document.createElement('p');
     description.className = 'description';
     description.textContent = tagline;
-    div.appendChild(h1);
-    div.appendChild(localisation);
-    div.appendChild(description);
-    return div;
+    userInfohgroup.appendChild(h1);
+    userInfohgroup.appendChild(localisation);
+    userInfohgroup.appendChild(description);
+    return userInfohgroup;
   }
 
   /**

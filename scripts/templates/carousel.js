@@ -36,9 +36,9 @@ function carouselTemplate(data, photographerName, index) {
     li.id = `item-${itemId}`;
     li.role = 'list-item';
 
-    const divLeftArrow = document.createElement('div');
-    divLeftArrow.role = 'button';
-    divLeftArrow.classList = 'controls controls-left';
+    const buttonLeftArrow = document.createElement('button');
+    buttonLeftArrow.role = 'button';
+    buttonLeftArrow.classList = 'controls controls-left';
     const spanLeftArrow = document.createElement('span');
     spanLeftArrow.classList = 'img prev-image';
     const iLeftArrow = document.createElement('i');
@@ -51,9 +51,9 @@ function carouselTemplate(data, photographerName, index) {
     pLeftArrow.textContent = 'Précédent';
 
     spanLeftArrow.appendChild(iLeftArrow);
-    divLeftArrow.appendChild(spanLeftArrow);
-    divLeftArrow.appendChild(pLeftArrow);
-    li.appendChild(divLeftArrow);
+    buttonLeftArrow.appendChild(spanLeftArrow);
+    buttonLeftArrow.appendChild(pLeftArrow);
+    li.appendChild(buttonLeftArrow);
 
     const divMedia = document.createElement('div');
     divMedia.classList = 'carousel-media';
@@ -72,25 +72,26 @@ function carouselTemplate(data, photographerName, index) {
       videoElement.appendChild(videoTitle);
       divMedia.appendChild(videoElement);
     }
-    const pMediaTitle = document.createElement('p');
-    pMediaTitle.classList = 'media-title';
-    pMediaTitle.textContent = title;
-    divMedia.appendChild(pMediaTitle);
+    const citeMediaTitle = document.createElement('cite');
+    citeMediaTitle.classList = 'media-title';
+    citeMediaTitle.textContent = title;
+    divMedia.appendChild(citeMediaTitle);
     li.appendChild(divMedia);
 
-    const divCloseCross = document.createElement('div');
-    divCloseCross.role = 'button';
-    divCloseCross.classList = 'close-carousel';
+    const buttonCloseCross = document.createElement('button');
+    buttonCloseCross.role = 'button';
+    buttonCloseCross.classList = 'close-carousel';
     // eslint-disable-next-line no-undef
-    divCloseCross.addEventListener('click', closeCarousel);
+    buttonCloseCross.addEventListener('click', closeCarousel);
     const pCloseCross = document.createElement('p');
     pCloseCross.classList = 'sr-only';
     pCloseCross.textContent = 'Fermer';
     const iCloseCross = document.createElement('i');
     iCloseCross.classList = 'fa-solid fa-xmark fa-3x';
-    const divRightArrow = document.createElement('div');
-    divRightArrow.role = 'button';
-    divRightArrow.classList = 'controls controls-right';
+
+    const buttonRightArrow = document.createElement('button');
+    buttonRightArrow.role = 'button';
+    buttonRightArrow.classList = 'controls controls-right';
     const spanRightArrow = document.createElement('span');
     spanRightArrow.classList = 'img prev-image';
     const iRightArrow = document.createElement('i');
@@ -102,14 +103,14 @@ function carouselTemplate(data, photographerName, index) {
     pRightArrow.classList = 'sr-only';
     pRightArrow.textContent = 'Suivant';
 
-    divCloseCross.appendChild(pCloseCross);
-    divCloseCross.appendChild(iCloseCross);
-    li.appendChild(divCloseCross);
+    buttonCloseCross.appendChild(pCloseCross);
+    buttonCloseCross.appendChild(iCloseCross);
+    li.appendChild(buttonCloseCross);
 
     spanRightArrow.appendChild(iRightArrow);
-    divRightArrow.appendChild(spanRightArrow);
-    divRightArrow.appendChild(pRightArrow);
-    li.appendChild(divRightArrow);
+    buttonRightArrow.appendChild(spanRightArrow);
+    buttonRightArrow.appendChild(pRightArrow);
+    li.appendChild(buttonRightArrow);
 
     return li;
   }

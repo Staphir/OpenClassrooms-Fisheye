@@ -15,9 +15,9 @@
     </a>
   </header>
   <main id="main" aria-hidden="false">
-    <div class="photograph-header">
+    <section class="photograph-header">
       <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
-    </div>
+    </section>
     <div class="div-sort">
       Trier par
       <button class="btn" id="btn">
@@ -27,11 +27,11 @@
       <ul class="dropdown" id="dropdown"></ul>
     </div>
     <section class="gallery" id="gallery"></section>
-    <div class="inset-likes-amount">
-      <div class="likes"></div>
-      <p class="amount"></p>
-    </div>
   </main>
+  <footer class="inset-likes-amount">
+    <div class="likes"></div>
+    <p class="amount"></p>
+  </footer>
   <div id="contact_modal">
     <div class="modal" aria-hidden="true" role="dialog" aria-describedby="contact_modal">
       <header>
@@ -39,7 +39,6 @@
         <img id="modal_close" src="assets/icons/close.svg" onclick="closeModal()" alt="fermer modal"/>
       </header>
       <form>
-        <div>
           <label for="firstname">Prénom</label>
           <input class="form_information" id="firstname" type="text" required/>
           <label for="name">Nom</label>
@@ -48,7 +47,6 @@
           <input class="form_information" id="email" type="email" required/>
           <label for="message">Votre message</label>
           <textarea class="form_information" id="message" required></textarea>
-        </div>
         <button class="contact_button" onclick="sendContactMessage(event)">Envoyer</button>
       </form>
     </div>

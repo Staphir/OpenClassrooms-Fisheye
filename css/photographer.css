@@ -54,6 +54,7 @@ html {
     font-weight: bold;
     color: white;
     padding: 11px;
+    margin-top: 30px;
     width: 170px;
     height: 70px;
     border: none;
@@ -264,6 +265,12 @@ form textarea {
     align-items: center;
     color: #901C1C;
     font-size: 24px;
+    margin-top: 15px;
+    margin-bottom: 25px;
+}
+
+.divTextMedia cite {
+    font-style: normal;
 }
 
 .divTextMedia .fa-heart {
@@ -337,6 +344,11 @@ form textarea {
     border-radius: 5px;
 }
 
+.carousel-item button {
+    background-color: transparent;
+    border: none;
+}
+
 .carousel-media {
     display: flex;
     flex-direction: column;
@@ -351,7 +363,8 @@ form textarea {
     border-radius: 5px;
 }
 
-.carousel-media p {
+.carousel-media cite {
+    font-style: normal;
     color: #901C1C;
     font-size: 24px;
 }
