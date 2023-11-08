@@ -9,15 +9,15 @@ const toggleDropdown = () => {
   toggleArrow.classList.toggle('arrow');
 };
 
-dropdownBtn.addEventListener('click', (e) => {
-  e.stopPropagation();
-  toggleDropdown();
-});
-
 document.documentElement.addEventListener('click', () => {
   if (dropdownMenu.classList.contains('show')) {
     toggleDropdown();
   }
+});
+
+dropdownBtn.addEventListener('click', (e) => {
+  e.stopPropagation();
+  toggleDropdown();
 });
 
 dropdownBtn.addEventListener('keydown', (event) => {
@@ -25,3 +25,76 @@ dropdownBtn.addEventListener('keydown', (event) => {
     document.querySelector('#media-0').firstChild.focus();
   }
 });
+
+/**
+ * Update dropdown sort type list
+ *
+ * @param {string} currentSortType - name of the current sort type
+ * @param {object} medias - medias informations of photographer
+ * @param {object} photographer - photographer informations
+ */
+// eslint-disable-next-line no-unused-vars
+function updateDropDownList(currentSortType, medias, photographer) {
+  dropdownMenu.textContent = '';
+
+  if (currentSortType !== 'popularity') {
+    const popularityLiElement = document.createElement('li');
+    const borderTopDivElement = document.createElement('div');
+    const popularityAElement = document.createElement('a');
+
+    borderTopDivElement.className = 'border-top';
+
+    popularityAElement.className = 'sort-element';
+    popularityAElement.id = 'popularity';
+    popularityAElement.textContent = 'Popularité';
+
+    popularityLiElement.addEventListener('click', () => {
+      // eslint-disable-next-line no-undef
+      updateGallery(medias, photographer, 'popularity', 'Popularité');
+    });
+
+    popularityLiElement.appendChild(borderTopDivElement);
+    popularityLiElement.appendChild(popularityAElement);
+    dropdownMenu.appendChild(popularityLiElement);
+  }
+  if (currentSortType !== 'date') {
+    const dateLiElement = document.createElement('li');
+    const borderTopDivElement = document.createElement('div');
+    const dateAElement = document.createElement('a');
+
+    borderTopDivElement.className = 'border-top';
+
+    dateAElement.className = 'sort-element';
+    dateAElement.id = 'date';
+    dateAElement.textContent = 'Date';
+
+    dateLiElement.addEventListener('click', () => {
+      // eslint-disable-next-line no-undef
+      updateGallery(medias, photographer, 'date', 'Date');
+    });
+
+    dateLiElement.appendChild(borderTopDivElement);
+    dateLiElement.appendChild(dateAElement);
+    dropdownMenu.appendChild(dateLiElement);
+  }
+  if (currentSortType !== 'title') {
+    const titleLiElement = document.createElement('li');
+    const borderTopDivElement = document.createElement('div');
+    const titleAElement = document.createElement('a');
+
+    borderTopDivElement.className = 'border-top';
+
+    titleAElement.className = 'sort-element';
+    titleAElement.id = 'title';
+    titleAElement.textContent = 'Titre';
+
+    titleLiElement.addEventListener('click', () => {
+      // eslint-disable-next-line no-undef
+      updateGallery(medias, photographer, 'title', 'Titre');
+    });
+
+    titleLiElement.appendChild(borderTopDivElement);
+    titleLiElement.appendChild(titleAElement);
+    dropdownMenu.appendChild(titleLiElement);
+  }
+}

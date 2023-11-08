@@ -178,6 +178,7 @@ form textarea {
     background-color: #901C1C;
     border-radius: 5px;
     cursor: pointer;
+    text-align: start;
 }
 
 .dropdown {
@@ -185,7 +186,7 @@ form textarea {
     position: absolute;
     width: 133px;
     border-radius: 5px;
-    margin-top: 0.3rem;
+    margin-top: -8px;
     background: #901C1C;
     visibility: hidden;
     opacity: 0;
@@ -193,18 +194,27 @@ form textarea {
     transition: all 0.1s cubic-bezier(0.16, 1, 0.5, 1);
     z-index: 1;
     cursor: pointer;
+    list-style: none;
+    padding: 0;
+    border-radius: 5px;
+
 }
 
-.dropdown a {
+.border-top {
+    border-top: 1px solid #FAFAFA;
+    position: absolute;
+    left: 10px;
+    right: 10px;
+}
+
+.sort-element {
     display: flex;
-    align-items: center;
-    padding: 0.8rem 1rem;
+    padding: 11px;
     text-decoration: none;
     color: white;
-    border-radius: 5px;
 }
 
-.dropdown a:hover {
+.sort-element:hover {
     background-color: #791616;
     color: white;
 }
@@ -215,8 +225,9 @@ form textarea {
     transform: translateY(0rem);
 }
 
-.fa-caret-down {
-    margin-left: 5px;
+.fa-chevron-down {
+    position: absolute;
+    left: 280px;
 }
 
 .arrow {

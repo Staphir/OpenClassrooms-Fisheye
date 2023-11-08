@@ -158,6 +158,32 @@ document.addEventListener('keydown', (event) => {
 });
 
 /**
+ * Sort and update gallery
+ *
+ * @param {object} medias - medias informations of photographer
+ * @param {object} photographer - photographer informations
+ * @param {string} sortValue - new type of sort
+ * @param {string} sortText - text associate to the new type of sort
+ */
+// eslint-disable-next-line no-unused-vars
+function updateGallery(medias, photographer, sortValue, sortText) {
+  const sortButton = document.querySelector('#btn');
+  const sortedMedias = sortMedias(medias, sortValue);
+  const currentTotalLikes = totalLikes;
+
+  document.querySelector('.gallery').innerHTML = '';
+  document.querySelector('#carousel').innerHTML = '';
+
+  displayPhotographerMedias(sortedMedias, photographer);
+  totalLikes = currentTotalLikes;
+
+  sortButton.innerHTML = `${sortText}<i class="fa-solid fa-chevron-down" id="arrow"></i>`;
+
+  // eslint-disable-next-line no-undef
+  updateDropDownList(sortValue, medias, photographer);
+}
+
+/**
  * Main function of photographer page
  *
  * @async
@@ -171,20 +197,9 @@ async function init() {
       medias = sortMedias(medias);
       displayPhotographerMedias(medias, photographer);
       displayInsetLikesAndPrice(photographer, medias);
-      const sortElements = document.querySelectorAll('.sort-element');
-      const sortButton = document.querySelector('#btn');
 
-      sortElements.forEach((element) => {
-        element.addEventListener('click', () => {
-          document.querySelector('.gallery').innerHTML = '';
-          document.querySelector('#carousel').innerHTML = '';
-          medias = sortMedias(medias, element.id);
-          const currentTotalLikes = totalLikes;
-          displayPhotographerMedias(medias, photographer);
-          totalLikes = currentTotalLikes;
-          sortButton.innerHTML = `${element.textContent}<i class="fa-solid fa-caret-down" id="arrow"></i>`;
-        });
-      });
+      // eslint-disable-next-line no-undef
+      updateDropDownList('popularity', medias, photographer);
 
       headerModalPhotographerName(photographer.name);
     });
