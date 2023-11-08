@@ -21,8 +21,8 @@ dropdownBtn.addEventListener('click', (e) => {
 });
 
 dropdownBtn.addEventListener('keydown', (event) => {
-  if (event.key.lenght === 1 && event.key === 'Tab') {
-    document.querySelector('#media-0').firstChild.focus();
+  if (event.key === 'Escape') {
+    toggleDropdown();
   }
 });
 
@@ -53,6 +53,16 @@ function updateDropDownList(currentSortType, medias, photographer) {
       updateGallery(medias, photographer, 'popularity', 'Popularité');
     });
 
+    popularityLiElement.setAttribute('tabindex', '0');
+
+    popularityLiElement.addEventListener('keydown', (event) => {
+      if (event.key === 'Enter') {
+        // eslint-disable-next-line no-undef
+        updateGallery(medias, photographer, 'popularity', 'Popularité');
+        toggleDropdown();
+      }
+    });
+
     popularityLiElement.appendChild(borderTopDivElement);
     popularityLiElement.appendChild(popularityAElement);
     dropdownMenu.appendChild(popularityLiElement);
@@ -73,6 +83,16 @@ function updateDropDownList(currentSortType, medias, photographer) {
       updateGallery(medias, photographer, 'date', 'Date');
     });
 
+    dateLiElement.setAttribute('tabindex', '0');
+
+    dateLiElement.addEventListener('keydown', (event) => {
+      if (event.key === 'Enter' && document.activeElement === dateLiElement) {
+        // eslint-disable-next-line no-undef
+        updateGallery(medias, photographer, 'date', 'Date');
+        toggleDropdown();
+      }
+    });
+
     dateLiElement.appendChild(borderTopDivElement);
     dateLiElement.appendChild(dateAElement);
     dropdownMenu.appendChild(dateLiElement);
@@ -91,6 +111,16 @@ function updateDropDownList(currentSortType, medias, photographer) {
     titleLiElement.addEventListener('click', () => {
       // eslint-disable-next-line no-undef
       updateGallery(medias, photographer, 'title', 'Titre');
+    });
+
+    titleLiElement.setAttribute('tabindex', '0');
+
+    titleLiElement.addEventListener('keydown', (event) => {
+      if (event.key === 'Enter') {
+        // eslint-disable-next-line no-undef
+        updateGallery(medias, photographer, 'title', 'Titre');
+        toggleDropdown();
+      }
     });
 
     titleLiElement.appendChild(borderTopDivElement);
