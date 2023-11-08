@@ -3,6 +3,9 @@
 const dropdownBtn = document.querySelector('#btn');
 const dropdownMenu = document.querySelector('#dropdown');
 
+/**
+ * open/close dropdown
+ */
 function toggleDropdown() {
   const toggleArrow = document.querySelector('#arrow');
 

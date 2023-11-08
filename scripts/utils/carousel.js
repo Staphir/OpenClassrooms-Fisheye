@@ -13,7 +13,7 @@ function displayCarousel(mediaId) {
   if (divCarousel.ariaHidden === 'true') {
     const main = document.querySelector('main');
     const body = document.querySelector('body');
-    if (this.parentNode) {
+    if (this) {
       const mediaSelected = this.parentNode;
       // eslint-disable-next-line no-param-reassign
       currentIndex = parseInt(mediaSelected.id.split('-')[1], 10);
